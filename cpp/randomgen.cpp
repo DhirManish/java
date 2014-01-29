@@ -1,5 +1,5 @@
 /*
- * randomgen.c
+ * randomgen.cpp
  * 
  * Copyright 2014 Ajay Bhatia <ajay@dumb-box>
  * 
