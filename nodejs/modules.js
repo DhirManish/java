@@ -1,5 +1,5 @@
 /*
- * server.js
+ * modules.js
  * 
  * Copyright 2014 Ajay Bhatia <ajay@dumb-box>
  * 
@@ -20,12 +20,9 @@
  * 
  * 
  */
- 
-var http = require('http');
 
-http.createServer(function(req, res) {
-	res.writeHead(200);
-	res.end("<h1>Hello, World!</h1>");
-}).listen(8080);
+function hello() {
+	return "Hello, World!";
+}
 
-console.log('Server running on port 8080...');
+modules.export.hello = hello
