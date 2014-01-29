@@ -28,6 +28,32 @@ using namespace std;
 
 int main()
 {
+	int limit;
+	
+	cout << "Enter the limit: ";
+	cin >> limit;
+	
+	int a = 0, b = 1, c = 0;
+	
+	if (limit <= 0) 
+		cout << "Limit cannot be negative or zero. Try again with new value." << endl;	
+	else if (limit == 1)
+		cout << a << endl;
+	else if (limit == 2)
+		cout << a << " " << b << endl;
+	else
+	{
+		cout << a << " " << b << " ";
+		for (int i = 3; i <= limit; i++)
+		{
+			c = a + b;
+			cout << c << " ";
+			a = b;
+			b = c;
+		}
+		
+		cout << endl;
+	}
 	
 	return 0;
 }
