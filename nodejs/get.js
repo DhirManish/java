@@ -28,16 +28,13 @@ var http = require('http'),
 
 // Create a local server and make it listen on 8080 port
 http.createServer(function(req, res) {
-	// Attach listener on end event
-	req.on('end', function() {
-		// Parse the request for arguments and store them in _get variable
-		// This function parses the url from request and returns object representation
-		var _get = url.parse(req.url, true).query;
-		// Write headers to the response
-		res.writeHead(200, {
-			'Content-Type': 'text/plain'	
-		});
-		// Send data and end request
-		res.end('You passed: ' + _get['data']);
+	// Parse the request for arguments and store them in _get variable
+	// This function parses the url from request and returns object representation
+	var _get = url.parse(req.url, true).query;
+	// Write headers to the response
+	res.writeHead(200, {
+		'Content-Type': 'text/plain'	
 	});
+	// Send data and end request
+	res.end('You passed: ' + _get['data']);
 }).listen(8080);
