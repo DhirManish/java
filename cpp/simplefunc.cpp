@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 {
 	int n;
 	
-	cout << "Ebter some number: ";
+	cout << "Enter some number: ";
 	cin >> n;
 	
 	cout << "Sqaure of " << n << " is " << square(n) << endl;
