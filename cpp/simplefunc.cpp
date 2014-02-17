@@ -26,8 +26,11 @@
 
 using namespace std;
 
-// Function Declaration
-int square(int); 
+// Function Declaration & Definition
+int square(int x)
+{
+	return x * x;
+}
 
 int main(int argc, char **argv)
 {
@@ -41,9 +44,4 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-// Function Definition
-int square(int x)
-{
-	return x * x;
-}
 
