@@ -21,29 +21,37 @@
 #  
 #
 
-# This is purely my code for retrieving commits from GitHub 
+# This is purely my code for retrieving commits from GitHub - Authorization with me.
 # Main Logic -->
-#curl -s https://github.com/thicklizard/GPEweepingangel/commits/master | grep 'tree/' | awk '{print $2}' | cut -d '/' -f 5 | uniq | sed 's/"//'
+#curl -s https://github.com/<username>/<reponame>/commits/master | grep 'tree/' | awk '{print $2}' | cut -d '/' -f 5 | uniq | sed 's/"//'
 
-if [ -e patches.txt ]; then
-	rm patches.txt
+dirname=`echo $1 | cut -d '/' -f 4`_`echo $1 | cut -d '/' -f 5`_`echo patches`
+patchlist=`echo $1 | cut -d '/' -f 4`_`echo $1 | cut -d '/' -f 5`_`echo patches.txt`
+messagelist=`echo $1 | cut -d '/' -f 4`_`echo $1 | cut -d '/' -f 5`_`echo message.txt`
+commithistory=`echo $1 | cut -d '/' -f 4`_`echo $1 | cut -d '/' -f 5`_`echo history.txt`
+
+if [ -f $patchlist ]; then
+	rm $patchlist
+else
+	touch $patchlist
 fi
 
-page=1
+mkdir -p $dirname
 
-while [ `curl -o /dev/null --silent --head --write-out '%{http_code}\n' $1/commits/master?page=$page` == "200" ]; do
-	curl -s $1/commits/master?page=$page | grep 'tree/' | awk '{print $2}' | cut -d '/' -f 5 | uniq | sed 's/"//' >> patches.txt
-	#curl -s $1/commits/master?page=$page | grep 'class="message" data-pjax="true" title=' | cut -d '"' -f 8 | sed -r 's/\//-/g' >> names.txt
+page=1
+while [ `curl -o /dev/null --silent --head --write-out '%{http_code}\n' $1/commits/$2?page=$page` == "200" ]; do
+	curl -s $1/commits/$2?page=$page | grep 'tree/' | awk '{print $2}' | cut -d '/' -f 5 | uniq | sed 's/"//' >> $patchlist
+	curl -s $1/commits/master?page=$page | grep 'class="message" data-pjax="true" title=' | cut -d '"' -f 8 | sed -r 's/\//-/g' >> $messagelist
 	page=$(($page+1))
 done
-	
-mkdir -p patches
-cd patches
 
-for patch in `cat ../patches.txt`; do
+paste $patchlist $messagelist > $commithistory
+	
+cd $dirname
+for patch in `cat ../$patchlist`; do
 	wget $1/commit/$patch.diff
 done 
 
-cd ..
-
-rm patches.txt
+rm ../$patchlist
+rm ../$messagelist
+mv ../$commithistory .
