@@ -40,7 +40,7 @@ mkdir -p $dirname
 
 page=1
 while [ `curl -o /dev/null --silent --head --write-out '%{http_code}\n' $1/commits/$2?page=$page` == "200" ]; do
-	#curl -s $1/commits/$2?page=$page | grep 'tree/' | awk '{print $2}' | cut -d '/' -f 5 | uniq | sed 's/"//' >> $patchlist
+	curl -s $1/commits/$2?page=$page | grep 'tree/' | awk '{print $2}' | cut -d '/' -f 5 | uniq | sed 's/"//' >> $patchlist
 	curl -s $1/commits/$2?page=$page | grep 'class="message" data-pjax="true" title=' | cut -d '"' -f 8 | sed -r 's/\//-/g' >>$messagelist
 	page=$(($page+1))
 done
