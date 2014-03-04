@@ -32,9 +32,20 @@ class Circle
 	float radius;
 
 	public:
-		void set_radius(float r) { radius = r; }
+		Circle()
+		{
+			radius = 1.0;
+		}
+	
+		Circle(float radius)
+		{
+			this->radius = radius;
+		}
+		
 		float circumference(void);
 		float area(void);
+		
+		~Circle() {}
 };
 
 float Circle::circumference(void)
@@ -49,17 +60,17 @@ float Circle::area(void)
 
 int main(int argc, char **argv)
 {
-	Circle c1;
-	Circle c2;
-	
-	c1.set_radius(12.5);
-	c2.set_radius(3.45);
+	Circle c1 = 12.5;
+	Circle c2 = 3.5;
+	Circle c3;
 	
 	cout << "Circumference of circle 1 = " << c1.circumference() << endl;
 	cout << "Circumference of circle 2 = " << c2.circumference() << endl;
+	cout << "Circumference of circle 3 = " << c3.circumference() << endl;
 	
 	cout << "Area of circle 1 = " << c1.area() << endl;
 	cout << "Area of circle 2 = " << c2.area() << endl;
+	cout << "Area of circle 3 = " << c3.area() << endl;
 		
 	return 0;
 }
