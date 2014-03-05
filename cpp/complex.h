@@ -38,9 +38,9 @@ class Complex
         Complex();
         Complex(double, double);
         Complex(const Complex&);
-        Complex add(Complex);
-        Complex subtract(Complex);
-        friend ostream& operator << (ostream&, const Complex&);
+        friend Complex operator +(const Complex&, const Complex&);
+        friend Complex operator -(const Complex&, const Complex&);
+        friend ostream& operator <<(ostream&, const Complex&);
 };
 
 Complex::Complex()
@@ -60,19 +60,19 @@ Complex::Complex(const Complex &obj)
     img = obj.img;
 }
 
-Complex Complex::add(Complex obj)
+Complex operator +(const Complex &obj1, const Complex &obj2)
 {
-    return Complex(real + obj.real, img + obj.img);
+    return Complex(obj1.real + obj2.real, obj1.img + obj2.img);
 }
 
-Complex Complex::subtract(Complex obj)
+Complex operator -(const Complex &obj1, const Complex &obj2)
 {
-    return Complex(real - obj.real, img - obj.img);
+    return Complex(obj1.real - obj2.real, obj1.img - obj2.img);
 }
 
 ostream& operator <<(ostream &out, const Complex &obj)
 {
-    out << obj.real << ((obj.img >= 0) ? " + " : " - ") << abs(obj.img) << "i" << endl;
+    out << obj.real << ((obj.img >= 0) ? " + " : " - ") << abs(obj.img) << "i";
     return out;
 }
 

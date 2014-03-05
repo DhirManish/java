@@ -31,9 +31,8 @@ int main(int argc, char **argv)
     Complex c1(12.3456, 78.6543);
     Complex c2(76.3482, 90.4828);
 
-    Complex c3 = c1.add(c2);
-
-    cout << c3;
+    cout << "(" << c1 << ") + (" << c2 << ") = (" << (c1 + c2) << ")" << endl;
+    cout << "(" << c1 << ") - (" << c2 << ") = (" << (c1 - c2) << ")" << endl;
 
 	return 0;
 }
