@@ -6,7 +6,7 @@ public static boolean isEven(int n) {
         }
 	return false;
 }
-//function for n%2 till 1
+//function for number divisible by power of 2
 public static boolean isPowerOf2(int n) {
 	while (n > 1) {
 	if (n % 2 != 0)
