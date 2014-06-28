@@ -1,5 +1,4 @@
-//0 6 24 60 120 . . . . .
-
+//0 6 24 60 120 . . . . . 
 
 public class Series4{
      public static void main(String[] args){
