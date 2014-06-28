@@ -1,4 +1,4 @@
-//2 6 12 20 30 . . . . .
+//2 6 12 20 30 . . . . . 
 
 public class Series1{
      public static void main(String[] args){
