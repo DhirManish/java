@@ -1,5 +1,5 @@
-//2 6 12 20 30 42 56 .....
-//x ^ 2 + x or x * X + x
+//2 6 12 20 30 . . . . .
+
 public class Series1{
      public static void main(String[] args){
 	int n=Integer.parseInt(args[0]);

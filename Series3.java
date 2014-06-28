@@ -1,3 +1,5 @@
+//0 4 18 48 100 . . . . .
+
 public class Series3{
      public static void main(String[] args){
 	int n=Integer.parseInt(args[0]);
